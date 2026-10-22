@@ -1,0 +1,400 @@
+{
+  "id": "8783beab-fc30-4954-8de7-b80db2b40100",
+  "prevId": "e2d9c8fe-ba37-4534-82a7-6213189e1ed7",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.cong_viec": {
+      "name": "cong_viec",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "tieu_de": {
+          "name": "tieu_de",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "phong_ban": {
+          "name": "phong_ban",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "dia_diem": {
+          "name": "dia_diem",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "hinh_thuc_lam_viec": {
+          "name": "hinh_thuc_lam_viec",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "loai_hop_dong": {
+          "name": "loai_hop_dong",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'Toàn thời gian'"
+        },
+        "cap_bac": {
+          "name": "cap_bac",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "muc_luong": {
+          "name": "muc_luong",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "noi_dung_tom_tat": {
+          "name": "noi_dung_tom_tat",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "mo_ta_chi_tiet": {
+          "name": "mo_ta_chi_tiet",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "trach_nhiem": {
+          "name": "trach_nhiem",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'[]'::jsonb"
+        },
+        "yeu_cau": {
+          "name": "yeu_cau",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'[]'::jsonb"
+        },
+        "diem_cong": {
+          "name": "diem_cong",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'[]'::jsonb"
+        },
+        "dai_ngo": {
+          "name": "dai_ngo",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'[]'::jsonb"
+        },
+        "ky_nang": {
+          "name": "ky_nang",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'[]'::jsonb"
+        },
+        "nguoi_phu_trach_ten": {
+          "name": "nguoi_phu_trach_ten",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "nguoi_phu_trach_chuc_danh": {
+          "name": "nguoi_phu_trach_chuc_danh",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "nguoi_phu_trach_avatar": {
+          "name": "nguoi_phu_trach_avatar",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "nguoi_phu_trach_email": {
+          "name": "nguoi_phu_trach_email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "uu_tien_tuyen_dung": {
+          "name": "uu_tien_tuyen_dung",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "trang_thai": {
+          "name": "trang_thai",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'dang_tuyen'"
+        },
+        "ngay_tao": {
+          "name": "ngay_tao",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "ngay_cap_nhat": {
+          "name": "ngay_cap_nhat",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.don_ung_tuyen": {
+      "name": "don_ung_tuyen",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "cong_viec_id": {
+          "name": "cong_viec_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ma_ung_tuyen": {
+          "name": "ma_ung_tuyen",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ho_ten": {
+          "name": "ho_ten",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "so_dien_thoai": {
+          "name": "so_dien_thoai",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "dia_chi": {
+          "name": "dia_chi",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "link_linkedin": {
+          "name": "link_linkedin",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "link_portfolio": {
+          "name": "link_portfolio",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "thu_gioi_thieu": {
+          "name": "thu_gioi_thieu",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ngay_co_the_bat_dau": {
+          "name": "ngay_co_the_bat_dau",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'2 tuần'"
+        },
+        "muc_luong_ky_vong": {
+          "name": "muc_luong_ky_vong",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "duong_dan_cv": {
+          "name": "duong_dan_cv",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ten_tep_cv": {
+          "name": "ten_tep_cv",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "kich_thuoc_tep_cv": {
+          "name": "kich_thuoc_tep_cv",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "dinh_dang_tep_cv": {
+          "name": "dinh_dang_tep_cv",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "diem_ai_danh_gia": {
+          "name": "diem_ai_danh_gia",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "trang_thai": {
+          "name": "trang_thai",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'moi_nop'"
+        },
+        "ghi_chu_noi_bo": {
+          "name": "ghi_chu_noi_bo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ngay_tao": {
+          "name": "ngay_tao",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "ngay_cap_nhat": {
+          "name": "ngay_cap_nhat",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "don_ung_tuyen_cong_viec_id_cong_viec_id_fk": {
+          "name": "don_ung_tuyen_cong_viec_id_cong_viec_id_fk",
+          "tableFrom": "don_ung_tuyen",
+          "tableTo": "cong_viec",
+          "columnsFrom": [
+            "cong_viec_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "don_ung_tuyen_ma_ung_tuyen_unique": {
+          "name": "don_ung_tuyen_ma_ung_tuyen_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "ma_ung_tuyen"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.users": {
+      "name": "users",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "users_email_unique": {
+          "name": "users_email_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "email"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

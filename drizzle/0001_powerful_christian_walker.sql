@@ -1,0 +1,52 @@
+CREATE TABLE "cong_viec" (
+	"id" text PRIMARY KEY NOT NULL,
+	"tieu_de" text NOT NULL,
+	"phong_ban" text NOT NULL,
+	"dia_diem" text NOT NULL,
+	"hinh_thuc_lam_viec" text NOT NULL,
+	"loai_hop_dong" text DEFAULT 'Toàn thời gian' NOT NULL,
+	"cap_bac" text NOT NULL,
+	"muc_luong" text NOT NULL,
+	"noi_dung_tom_tat" text NOT NULL,
+	"mo_ta_chi_tiet" text,
+	"trach_nhiem" jsonb DEFAULT '[]'::jsonb,
+	"yeu_cau" jsonb DEFAULT '[]'::jsonb,
+	"diem_cong" jsonb DEFAULT '[]'::jsonb,
+	"dai_ngo" jsonb DEFAULT '[]'::jsonb,
+	"ky_nang" jsonb DEFAULT '[]'::jsonb,
+	"nguoi_phu_trach_ten" text,
+	"nguoi_phu_trach_chuc_danh" text,
+	"nguoi_phu_trach_avatar" text,
+	"nguoi_phu_trach_email" text,
+	"uu_tien_tuyen_dung" boolean DEFAULT false NOT NULL,
+	"trang_thai" text DEFAULT 'dang_tuyen' NOT NULL,
+	"ngay_tao" timestamp DEFAULT now() NOT NULL,
+	"ngay_cap_nhat" timestamp DEFAULT now() NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE "don_ung_tuyen" (
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"cong_viec_id" text NOT NULL,
+	"ma_ung_tuyen" text NOT NULL,
+	"ho_ten" text NOT NULL,
+	"email" text NOT NULL,
+	"so_dien_thoai" text NOT NULL,
+	"dia_chi" text,
+	"link_linkedin" text,
+	"link_portfolio" text,
+	"thu_gioi_thieu" text,
+	"ngay_co_the_bat_dau" text DEFAULT '2 tuần',
+	"muc_luong_ky_vong" text,
+	"duong_dan_cv" text NOT NULL,
+	"ten_tep_cv" text NOT NULL,
+	"kich_thuoc_tep_cv" integer NOT NULL,
+	"dinh_dang_tep_cv" text NOT NULL,
+	"diem_ai_danh_gia" integer,
+	"trang_thai" text DEFAULT 'moi_nop' NOT NULL,
+	"ghi_chu_noi_bo" text,
+	"ngay_tao" timestamp DEFAULT now() NOT NULL,
+	"ngay_cap_nhat" timestamp DEFAULT now() NOT NULL,
+	CONSTRAINT "don_ung_tuyen_ma_ung_tuyen_unique" UNIQUE("ma_ung_tuyen")
+);
+--> statement-breakpoint
+ALTER TABLE "don_ung_tuyen" ADD CONSTRAINT "don_ung_tuyen_cong_viec_id_cong_viec_id_fk" FOREIGN KEY ("cong_viec_id") REFERENCES "public"."cong_viec"("id") ON DELETE restrict ON UPDATE no action;
