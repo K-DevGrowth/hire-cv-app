@@ -12,13 +12,8 @@
     {
       "idx": 1,
       "version": "7",
-<<<<<<< HEAD
-      "when": 1792663931513,
-      "tag": "0001_powerful_christian_walker",
-=======
       "when": 1792774504606,
       "tag": "0001_motionless_tag",
->>>>>>> 15e7891 (get all job api)
       "breakpoints": true
     }
   ]

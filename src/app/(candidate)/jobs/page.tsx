@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-import { redirect } from "next/navigation";
-=======
 import { getAllJobs } from "@/features/jobs/queries";
 
 const Jobs = async () => {
@@ -22,7 +19,6 @@ const Jobs = async () => {
     </div>
   );
 };
->>>>>>> 15e7891 (get all job api)
 
 export default function JobsPage() {
   redirect("/#open-roles");
