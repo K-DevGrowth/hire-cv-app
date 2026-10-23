@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "id": "8783beab-fc30-4954-8de7-b80db2b40100",
+=======
+  "id": "228dd48f-a570-41c8-a711-f868801a99df",
+>>>>>>> 15e7891 (get all job api)
   "prevId": "e2d9c8fe-ba37-4534-82a7-6213189e1ed7",
   "version": "7",
   "dialect": "postgresql",
@@ -165,6 +169,7 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
+<<<<<<< HEAD
     "public.don_ung_tuyen": {
       "name": "don_ung_tuyen",
       "schema": "",
@@ -331,6 +336,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
+=======
+>>>>>>> 15e7891 (get all job api)
     "public.users": {
       "name": "users",
       "schema": "",

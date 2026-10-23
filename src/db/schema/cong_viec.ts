@@ -28,4 +28,7 @@ export const cong_viec = pgTable("cong_viec", {
 
 export type CongViec = typeof cong_viec.$inferSelect;
 export type CongViecMoi = typeof cong_viec.$inferInsert;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 15e7891 (get all job api)
