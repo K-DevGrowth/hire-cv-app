@@ -1,6 +1,15 @@
 import { getAllJobs } from "@/features/jobs/queries";
+import { Suspense } from "react";
 
-const Jobs = async () => {
+export default function JobPage() {
+  return (
+    <Suspense>
+      <JobContent />
+    </Suspense>
+  );
+}
+
+const JobContent = async () => {
   const jobs = await getAllJobs();
   return (
     <div>
@@ -19,7 +28,3 @@ const Jobs = async () => {
     </div>
   );
 };
-
-export default function JobsPage() {
-  redirect("/#open-roles");
-}
