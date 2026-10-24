@@ -21,8 +21,8 @@ const JobContent = async () => {
       </form>
       {jobs.map((job) => (
         <div key={job.id}>
-          <p>{job.tieu_de}</p>
-          <p>{job.noi_dung_tom_tat}</p>
+          <p>{job.title}</p>
+          <p>{job.summary}</p>
         </div>
       ))}
     </div>
