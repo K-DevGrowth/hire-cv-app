@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { getAllJobs } from "@/features/jobs/queries";
 import { Suspense } from "react";
 
@@ -14,7 +15,7 @@ const JobContent = async () => {
   return (
     <div>
       <p className="text-3xl font-bold">Việc làm đang tuyển</p>
-      <p>4 vị trí phù hợp với bạn</p>
+      <p>{jobs.length} vị trí phù hợp với bạn</p>
       <form action="">
         <input type="text" placeholder="Tìm vị trí hoặc kỹ năng" />
         <button type="submit">Tìm việc</button>
@@ -23,6 +24,7 @@ const JobContent = async () => {
         <div key={job.id}>
           <p>{job.title}</p>
           <p>{job.summary}</p>
+          <Button variant="outline">Ứng tuyển</Button>
         </div>
       ))}
     </div>

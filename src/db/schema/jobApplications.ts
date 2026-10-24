@@ -1,7 +1,7 @@
 import { integer, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 import { jobs } from "./jobs";
 
-export const jobApplications = pgTable("jobApplications ", {
+export const jobApplications = pgTable("jobApplications", {
   id: uuid("id").defaultRandom().primaryKey(),
   jobId: text("jobId")
     .notNull()
