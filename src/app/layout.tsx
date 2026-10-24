@@ -1,3 +1,4 @@
+import { NavigationMenuDemo } from "@/components/navbar";
 import "./globals.css";
 import { Geist, Geist_Mono } from "next/font/google";
 
@@ -14,7 +15,10 @@ const geistMono = Geist_Mono({
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="vi" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>{children}</body>
+      <body>
+        <NavigationMenuDemo />
+        <div className="p-6">{children}</div>
+      </body>
     </html>
   );
 }

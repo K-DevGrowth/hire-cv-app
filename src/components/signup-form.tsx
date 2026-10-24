@@ -1,15 +1,14 @@
-import { cn } from "cn";
+import { cn } from "cn"
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 import {
   Field,
   FieldDescription,
   FieldGroup,
   FieldLabel,
   FieldSeparator,
-} from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
-import Link from "next/link";
+} from "@/components/ui/field"
+import { Input } from "@/components/ui/input"
 
 export function SignupForm({
   className,
@@ -85,10 +84,10 @@ export function SignupForm({
             Sign up with GitHub
           </Button>
           <FieldDescription className="px-6 text-center">
-            Already have an account? <Link href="/login">Sign in</Link>
+            Already have an account? <a href="#">Sign in</a>
           </FieldDescription>
         </Field>
       </FieldGroup>
     </form>
-  );
+  )
 }
