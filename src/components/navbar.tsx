@@ -11,33 +11,30 @@ import {
 
 export function NavigationMenuDemo() {
   return (
-    <NavigationMenu>
-      <NavigationMenuList>
-        <NavigationMenuItem>
-          <NavigationMenuLink
-            className={navigationMenuTriggerStyle()}
-            render={<Link href="/jobs">Việc làm</Link>}
-          />
-        </NavigationMenuItem>
-        <NavigationMenuItem className="hidden md:flex">
-          <NavigationMenuLink
-            className={navigationMenuTriggerStyle()}
-            render={<Link href="/applications">Hồ sơ ứng tuyển</Link>}
-          />
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink
-            className={navigationMenuTriggerStyle()}
-            render={<Link href="/interviews">Lịch phỏng vấn</Link>}
-          />
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink
-            className={navigationMenuTriggerStyle()}
-            render={<Link href="/profile">Hồ sơ của tôi</Link>}
-          />
-        </NavigationMenuItem>
-      </NavigationMenuList>
-    </NavigationMenu>
+    <div className="border p-4 flex justify-between items-center">
+      <NavigationMenu>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <NavigationMenuLink
+              className={navigationMenuTriggerStyle()}
+              render={<Link href="/jobs">Việc làm</Link>}
+            />
+          </NavigationMenuItem>
+          <NavigationMenuItem className="hidden md:flex">
+            <NavigationMenuLink
+              className={navigationMenuTriggerStyle()}
+              render={<Link href="/applications">Hồ sơ ứng tuyển</Link>}
+            />
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuLink
+              className={navigationMenuTriggerStyle()}
+              render={<Link href="/interviews">Lịch phỏng vấn</Link>}
+            />
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
+      <Link href="/login">Đăng nhập</Link>
+    </div>
   );
 }
