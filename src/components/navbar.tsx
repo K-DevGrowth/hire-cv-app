@@ -9,16 +9,13 @@ import {
   navigationMenuTriggerStyle,
 } from "./ui/navigation-menu";
 import { Button } from "./ui/button";
-import Image from "next/image";
 
 export function NavigationMenuDemo() {
   return (
     <header className="border-b border-Neutral-800 bg-Navy-950/90 backdrop-blur-md sticky top-0 z-40">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
         <div className="flex items-center gap-3">
-          <Link href="/">
-            <Image src="logo.svg" alt="" width={140} height={0} />
-          </Link>
+          <Link href="/">HireDemo</Link>
         </div>
 
         <NavigationMenu className="hidden md:flex">

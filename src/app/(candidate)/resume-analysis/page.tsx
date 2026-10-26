@@ -408,7 +408,7 @@ export default function ResumeAnalysisPage() {
                 {loading ? (
                   <>
                     <Loader2 className="h-4 w-4 animate-spin text-Lime-500" />
-                    <span>ĐANG PHÂN TÍCH (~15-30S)...</span>
+                    <span>ĐANG PHÂN TÍCH (~30-60S)...</span>
                   </>
                 ) : (
                   <>

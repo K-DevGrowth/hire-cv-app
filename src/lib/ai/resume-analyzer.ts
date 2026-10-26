@@ -127,7 +127,7 @@ export async function analyzeResumeWithAi({
   Hãy đối chiếu CV với JD và trả về phân tích theo đúng schema.
   `;
   const { output } = await generateText({
-    model: google("gemini-3.8-flash"),
+    model: google("gemini-3.5-flash-lite"),
     system: SYSTEM_PROMPT,
     output: Output.object({
       schema: resumeAnalysisSchema.omit({ overallScore: true }),

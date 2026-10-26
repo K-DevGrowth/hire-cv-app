@@ -1,7 +1,7 @@
 import { analyzeResumeWithAi } from "@/lib/ai/resume-analyzer";
 import { NextResponse } from "next/server";
 
-export const maxDuration = 180;
+export const maxDuration = 60;
 
 const MAX_SIZE = 4 * 1024 * 1024; // 4MB
 
