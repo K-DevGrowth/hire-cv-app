@@ -191,7 +191,7 @@ export default function ResumeAnalysisPage() {
         <div className="mb-8 text-center space-y-2">
           <h1 className="font-orbitron font-black text-3xl sm:text-4xl text-Neutral-50 tracking-wider uppercase">
             <span className="text-Lime-500 mr-2">//</span>
-            PHÂN TÍCH CV // ATS
+            PHÂN TÍCH CV
           </h1>
           <p className="text-xs text-Neutral-400 max-w-md mx-auto">
             Nhập JD và tải CV để AI kiểm tra từ khóa, tính điểm ATS và gợi ý
