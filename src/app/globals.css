@@ -1,3 +1,70 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+
+@theme inline {
+  --font-orbitron: var(--font-orbitron), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --color-Neutral-950: hsl(214 37% 4%);
+  --color-Neutral-900: hsl(210 39% 7%);
+  --color-Neutral-800: hsl(211 30% 13%);
+  --color-Neutral-700: hsl(211 22% 24%);
+  --color-Neutral-600: hsl(210 18% 42%);
+  --color-Neutral-500: hsl(211 14% 50%);
+  --color-Neutral-400: hsl(211 13% 55%);
+  --color-Neutral-300: hsl(211 18% 68%);
+  --color-Neutral-100: hsl(208 49% 92%);
+  --color-Neutral-50: hsl(204 60% 97%);
+
+  --color-Lime-400: hsl(77 95% 65%);
+  --color-Lime-500: hsl(77 90% 59%);
+  --color-Lime-700: hsl(77 67% 39%);
+
+  --color-Red-400: hsl(4 100% 74%);
+  --color-Red-500: hsl(4 90% 60%);
+
+  --color-Amber-400: hsl(40 100% 65%);
+
+  --color-Navy-950: hsl(214 60% 2%);
+  --color-Navy-900: hsl(214 50% 6%);
+
+  --color-Lime-alpha-60: hsl(77 90% 59% / 0.6);
+  --color-Lime-alpha-40: hsl(77 90% 59% / 0.4);
+  --color-Navy-alpha-80: hsl(214 60% 2% / 0.8);
+  --color-Navy-alpha-60: hsl(214 60% 2% / 0.6);
+}
+
+@layer base {
+  body {
+    @apply bg-Navy-950 text-Neutral-100 font-mono antialiased selection:bg-Lime-500 selection:text-Neutral-950;
+  }
+
+  button {
+    @apply bg-Lime-500 text-Neutral-950;
+  }
+
+  h1 {
+    @apply text-3xl font-semibold;
+  }
+
+  h2 {
+    @apply text-2xl font-semibold;
+  }
+
+  h3 {
+    @apply text-xl font-medium;
+  }
+
+  h4 {
+    @apply text-lg font-medium;
+  }
+
+  h5 {
+    @apply text-base font-medium;
+  }
+
+  h6 {
+    @apply text-sm font-medium uppercase tracking-wider;
+  }
+}

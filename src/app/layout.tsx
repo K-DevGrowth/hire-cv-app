@@ -1,20 +1,23 @@
 import { NavigationMenuDemo } from "@/components/navbar";
 import "./globals.css";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Orbitron, JetBrains_Mono } from "next/font/google";
 
-const geistSans = Geist({
+const orbitron = Orbitron({
   subsets: ["latin"],
-  variable: "--font-geist-sans",
+  variable: "--font-orbitron",
 });
 
-const geistMono = Geist_Mono({
+const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-geist-mono",
+  variable: "--font-jetbrains-mono",
 });
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="vi" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html
+      lang="vi"
+      className={`${orbitron.variable} ${jetBrainsMono.variable}`}
+    >
       <body>
         <NavigationMenuDemo />
         <div className="p-6">{children}</div>
