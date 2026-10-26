@@ -86,11 +86,7 @@ export function NavigationMenuDemo() {
             aria-expanded={isOpen}
             className="inline-flex items-center justify-center p-2 text-Neutral-300 hover:text-Lime-400 hover:bg-Neutral-900 border border-Neutral-800 transition-colors focus:outline-none"
           >
-            {isOpen ? (
-              <X className="size-5 text-Navy-950" />
-            ) : (
-              <Menu className="size-5 text-Navy-950" />
-            )}
+            {isOpen ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
         </div>
       </div>

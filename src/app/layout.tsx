@@ -1,6 +1,7 @@
 import { NavigationMenuDemo } from "@/components/navbar";
 import "./globals.css";
 import { Orbitron, JetBrains_Mono } from "next/font/google";
+import { Suspense } from "react";
 
 const orbitron = Orbitron({
   subsets: ["latin"],
@@ -19,7 +20,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${orbitron.variable} ${jetBrainsMono.variable}`}
     >
       <body>
-        <NavigationMenuDemo />
+        <Suspense>
+          <NavigationMenuDemo />
+        </Suspense>
         <div className="p-6">{children}</div>
       </body>
     </html>
