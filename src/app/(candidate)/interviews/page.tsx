@@ -1,6 +1,9 @@
 
 const Interviews = () => {
-  return <div>Interviews</div>;
+  return <div>
+    <h1>Lịch phỏng vấn</h1>
+
+  </div>;
 };
 
 export default Interviews;

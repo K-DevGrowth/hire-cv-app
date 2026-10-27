@@ -1,7 +1,10 @@
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { getAllJobs } from "@/features/jobs/queries";
+import { getAllJobs } from "@/db/queries/select";
 import { cn } from "cn";
+import { ChevronRight } from "lucide-react";
 import { Suspense } from "react";
 
 export default function JobPage() {
@@ -17,7 +20,7 @@ const JobContent = async () => {
   return (
     <div>
       <h1>Việc làm đang tuyển</h1>
-      <p className="my-2">0 vị trí phù hợp với bạn</p>
+      <p className="my-2">{jobs.length} vị trí phù hợp với bạn</p>
       <form action="" className="my-4">
         <div className="flex items-center gap-4">
           <Input type="text" placeholder="Tìm vị trí hoặc kỹ năng" />
@@ -26,13 +29,25 @@ const JobContent = async () => {
           </Button>
         </div>
       </form>
-      {/* {jobs.map((job) => (
-        <div key={job.id}>
-          <p>{job.title}</p>
-          <p>{job.summary}</p>
-          <Button variant="outline">Ứng tuyển</Button>
+      {jobs.map((job) => (
+        <div key={job.id} className="my-4">
+          <Card
+            className={cn("flex flex-row justify-between p-4 items-center")}
+          >
+            <div className="*:py-2">
+              <h3>{job.title}</h3>
+              <p>{job.summary}</p>
+              <Badge variant="neon">{job.department}</Badge>
+              <p>
+                {job.experience} | {job.salary} | {job.location}
+              </p>
+            </div>
+            <Button variant="outline">
+              Ứng tuyển <ChevronRight />
+            </Button>
+          </Card>
         </div>
-      ))} */}
+      ))}
     </div>
   );
 };

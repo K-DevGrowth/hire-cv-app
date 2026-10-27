@@ -9,6 +9,36 @@ const sql = neon(process.env.DATABASE_URL!);
 const db = drizzle(sql, { schema });
 
 import { jobs, type NewJob } from "./schema/jobs";
+import { users, type NewUser } from "./schema/users";
+import { interviews, type NewInterview } from "./schema/interviews";
+import { resumeAnalyses, type NewResumeAnalysis } from "./schema/resumeAnalyses";
+
+const usersData: NewUser[] = [
+  {
+    id: "11111111-1111-4111-8111-111111111111",
+    name: "Nguyễn Thu Hà",
+    email: "ha.nguyen@example.com",
+    role: "hr",
+    avatar: "https://i.pravatar.cc/150?img=47",
+    phone: "0912345678",
+  },
+  {
+    id: "22222222-2222-4222-8222-222222222222",
+    name: "Trần Minh Khoa",
+    email: "khoa.tran@example.com",
+    role: "interviewer",
+    avatar: "https://i.pravatar.cc/150?img=12",
+    phone: "0923456789",
+  },
+  {
+    id: "33333333-3333-4333-8333-333333333333",
+    name: "Nguyễn Văn An",
+    email: "an.nguyen@example.com",
+    role: "candidate",
+    avatar: "https://i.pravatar.cc/150?img=68",
+    phone: "0901234567",
+  },
+];
 import { jobApplications, type NewApplication } from "./schema/jobApplications";
 
 const jobsData: NewJob[] = [
@@ -241,6 +271,7 @@ const jobsData: NewJob[] = [
 const applicationsData: NewApplication[] = [
   {
     jobId: "eng-1",
+    id: "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
     applicationCode: "HN-2026-8942",
     fullName: "Nguyễn Văn An",
     email: "an.nguyen@example.com",
@@ -301,6 +332,7 @@ const applicationsData: NewApplication[] = [
   },
   {
     jobId: "ai-1",
+    id: "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
     applicationCode: "HN-2026-8945",
     fullName: "Phạm Quốc Bảo",
     email: "bao.pham@example.com",
@@ -391,17 +423,83 @@ const applicationsData: NewApplication[] = [
   },
 ];
 
+const interviewsData: NewInterview[] = [
+  {
+    id: "44444444-4444-4444-8444-444444444444",
+    applicationId: "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+    interviewerId: "22222222-2222-4222-8222-222222222222",
+    scheduledAt: new Date(Date.now() + 86400000 * 2), // 2 ngày tới
+    format: "online",
+    meetingLink: "https://meet.google.com/abc-defg-hij",
+    status: "scheduled",
+  },
+  {
+    id: "55555555-5555-4555-8555-555555555555",
+    applicationId: "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+    interviewerId: "22222222-2222-4222-8222-222222222222",
+    scheduledAt: new Date(Date.now() - 86400000 * 3), // 3 ngày trước
+    format: "online",
+    meetingLink: "https://meet.google.com/xyz-uvwx-rst",
+    status: "completed",
+    score: 92,
+    feedback:
+      "Ứng viên nắm rất vững kiến thức về Machine Learning và kiến trúc hệ thống dữ liệu lớn. Tác phong chuyên nghiệp.",
+    recommendation: "strong_hire",
+  },
+];
+
+const resumeAnalysesData: NewResumeAnalysis[] = [
+  {
+    id: "66666666-6666-4666-8666-666666666666",
+    jobId: "eng-1",
+    targetJobTitle: "Senior Frontend Engineer",
+    companyName: "HireNext Technology",
+    jobDescription:
+      "Yêu cầu từ 4 năm kinh nghiệm React, TypeScript, Next.js và tối ưu hiệu năng web.",
+    resumeUrl: "/uploads/cvs/sample-frontend-cv.pdf",
+    resumeFileName: "NguyenVanAn_CV.pdf",
+    matchScore: 88,
+    summary:
+      "Hồ sơ ứng viên rất tiềm năng, kỹ năng kỹ thuật khớp 88% với yêu cầu công việc.",
+    strengths: [
+      "Thành thạo React 19, TypeScript và Next.js App Router",
+      "Kinh nghiệm xây dựng và tối ưu hoá Web Vitals quy mô lớn",
+      "Từng dẫn dắt và mentoring cho các kỹ sư trẻ",
+    ],
+    weaknesses: [
+      "Chưa có nhiều kinh nghiệm viết Automated E2E Testing (Playwright / Cypress)",
+      "Thiếu các chỉ số định lượng về doanh thu/chi phí tiết kiệm được",
+    ],
+    suggestions: [
+      "Bổ sung mục các số liệu đo lường hiệu năng (ví dụ: giảm thời gian tải trang 35%)",
+      "Đính kèm link dự án cá nhân GitHub hoặc sản phẩm trực tiếp đã triển khai",
+    ],
+  },
+];
+
 async function seed() {
   console.log("Seeding database...");
+  await db.delete(interviews);
+  await db.delete(resumeAnalyses);
 
   await db.delete(jobApplications);
   await db.delete(jobs);
+  await db.delete(users);
+
+  await db.insert(users).values(usersData);
+  console.log(`Inserted ${usersData.length} users`);
 
   await db.insert(jobs).values(jobsData);
   console.log(`Inserted ${jobsData.length} jobs`);
 
   await db.insert(jobApplications).values(applicationsData);
   console.log(`Inserted ${applicationsData.length} job applications`);
+
+  await db.insert(interviews).values(interviewsData);
+  console.log(`Inserted ${interviewsData.length} interviews`);
+
+  await db.insert(resumeAnalyses).values(resumeAnalysesData);
+  console.log(`Inserted ${resumeAnalysesData.length} resume analyses`);
 
   console.log("Seed completed.");
 }

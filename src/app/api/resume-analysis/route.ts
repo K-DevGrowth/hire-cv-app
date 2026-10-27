@@ -46,18 +46,6 @@ export async function POST(request: Request) {
       );
     }
 
-    const hasApiKey = Boolean(process.env.GOOGLE_GENERATIVE_AI_API_KEY);
-
-    if (!hasApiKey) {
-      return NextResponse.json(
-        {
-          error:
-            "Chưa cấu hình API Key. Vui lòng thêm GOOGLE_GENERATIVE_AI_API_KEY hoặc GEMINI_API_KEY vào .env.local",
-        },
-        { status: 500 },
-      );
-    }
-
     const pdfBuffer = Buffer.from(await file.arrayBuffer());
     const result = await analyzeResumeWithAi({
       pdfBuffer,
