@@ -15,7 +15,7 @@ export const auth = betterAuth({
     provider: "pg",
     schema,
   }),
-  baseURL: "http://localhost:3000/",
+  // baseURL: "http://localhost:3000/",
   emailAndPassword: { enabled: true },
   socialProviders: {
     google: {
