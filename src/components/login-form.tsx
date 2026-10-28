@@ -25,7 +25,10 @@ export function LoginForm({
   ...props
 }: React.ComponentProps<"div">) {
   const handleGoogleSignIn = async () => {
-    await authClient.signIn.social({ provider: "google", callbackURL: "/" });
+    await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/candidates/jobs",
+    });
   };
 
   return (
