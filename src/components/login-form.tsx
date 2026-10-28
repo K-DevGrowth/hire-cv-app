@@ -79,7 +79,7 @@ export function LoginForm({
                   Đăng nhập với Google
                 </Button>
                 <FieldDescription className="text-center">
-                  Chưa có tài khoản? <Link href="/signup">Đăng ký</Link>
+                  {/* Chưa có tài khoản? <Link href="/signup">Đăng ký</Link> */}
                 </FieldDescription>
               </Field>
             </FieldGroup>
