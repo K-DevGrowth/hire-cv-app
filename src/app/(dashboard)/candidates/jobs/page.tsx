@@ -16,11 +16,11 @@ export default function JobPage() {
 }
 
 const JobContent = async () => {
-  const jobs = await getAllJobs();
+  // const jobs = await getAllJobs();
   return (
     <div>
       <h1>Việc làm đang tuyển</h1>
-      <p className="my-2">{jobs.length} vị trí phù hợp với bạn</p>
+      <p className="my-2">0 vị trí phù hợp với bạn</p>
       <form action="" className="my-4">
         <div className="flex items-center gap-4">
           <Input type="text" placeholder="Tìm vị trí hoặc kỹ năng" />
@@ -29,7 +29,7 @@ const JobContent = async () => {
           </Button>
         </div>
       </form>
-      {jobs.map((job) => (
+      {/* {jobs.map((job) => (
         <div key={job.id} className="my-4">
           <Card
             className={cn("flex flex-row justify-between p-4 items-center")}
@@ -47,7 +47,7 @@ const JobContent = async () => {
             </Button>
           </Card>
         </div>
-      ))}
+      ))} */}
     </div>
   );
 };

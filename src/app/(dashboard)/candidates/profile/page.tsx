@@ -12,23 +12,22 @@ export default function ProfilePage() {
 }
 
 const ProfileContent = async () => {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
+  // const session = await auth.api.getSession({
+  //   headers: await headers(),
+  // });
 
-  if (!session) redirect("/login");
+  // if (!session) redirect("/login");
 
-  const { user } = session;
+  // const { user } = session;
 
   return (
     <div>
-      <h1>Hồ sơ của tôi</h1>
+      <h1>Hồ sơ cá nhân</h1>
       <hr />
-      <img src={user.image} alt="avatar" />
-      <p>Name: {user.name}</p>
+      {/* <p>Name: {user.name}</p>
       <p>Email: {user.email}</p>
       <p>Role: {user.role}</p>
-      <p>{user.phone && `Phone: ${user.phone}`}</p>
+      <p>{user.phone && `Phone: ${user.phone}`}</p> */}
     </div>
   );
 };
