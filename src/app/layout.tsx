@@ -1,25 +1,25 @@
 import { NavigationMenuDemo } from "@/components/navbar";
 import "./globals.css";
-import { Orbitron, JetBrains_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import { Suspense } from "react";
 
-const orbitron = Orbitron({
+const geistSans = Geist({
   subsets: ["latin"],
-  variable: "--font-orbitron",
+  variable: "--font-geist-sans",
 });
 
-const jetBrainsMono = JetBrains_Mono({
+const geistMono = Geist_Mono({
   subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
+  variable: "--font-geist-mono",
 });
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="vi"
-      className={`${orbitron.variable} ${jetBrainsMono.variable}`}
+      className={`${geistSans.variable} ${geistMono.variable}`}
     >
-      <body>
+      <body className="min-h-screen bg-background font-sans text-foreground antialiased">
         <Suspense>
           <NavigationMenuDemo />
         </Suspense>

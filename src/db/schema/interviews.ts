@@ -7,8 +7,9 @@ export const interviews = pgTable("interviews", {
   applicationId: uuid("application_id")
     .notNull()
     .references(() => jobApplications.id, { onDelete: "cascade" }),
-  interviewerId: uuid("interviewer_id")
-    .references(() => users.id, { onDelete: "set null" }),
+  interviewerId: uuid("interviewer_id").references(() => users.id, {
+    onDelete: "set null",
+  }),
 
   scheduledAt: timestamp("scheduled_at").notNull(),
   format: text("format").default("online").notNull(), // "online" | "offline"

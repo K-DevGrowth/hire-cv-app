@@ -22,7 +22,7 @@ export const jobApplicationsRelations = relations(
       references: [jobs.id],
     }),
     interviews: many(interviews),
-  })
+  }),
 );
 
 export const interviewsRelations = relations(interviews, ({ one }) => ({

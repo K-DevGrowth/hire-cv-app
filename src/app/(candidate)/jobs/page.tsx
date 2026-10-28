@@ -37,7 +37,7 @@ const JobContent = async () => {
             <div className="*:py-2">
               <h3>{job.title}</h3>
               <p>{job.summary}</p>
-              <Badge variant="neon">{job.department}</Badge>
+              <Badge variant="secondary">{job.department}</Badge>
               <p>
                 {job.experience} | {job.salary} | {job.location}
               </p>

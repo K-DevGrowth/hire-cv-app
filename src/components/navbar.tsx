@@ -31,16 +31,15 @@ export function NavigationMenuDemo() {
   };
 
   return (
-    <header className="sticky top-0 z-40 border-b border-Neutral-800 bg-Navy-950/95 backdrop-blur-md">
+    <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
         {/* Logo */}
         <div className="flex items-center gap-3">
           <Link
             href="/"
-            className="flex items-center gap-1.5 font-[family-name:var(--font-orbitron)] font-bold text-base tracking-wider text-Neutral-50 hover:text-Lime-400 transition-colors"
+            className="flex items-center gap-2 font-bold text-lg tracking-tight text-foreground hover:opacity-80 transition-opacity"
           >
-            <span className="text-Lime-500 font-black">//</span>
-            <span>HIREDEMO</span>
+            <span>HireNext</span>
           </Link>
         </div>
 
@@ -55,9 +54,8 @@ export function NavigationMenuDemo() {
                     <NavigationMenuLink
                       className={cn(
                         navigationMenuTriggerStyle(),
-                        "font-mono text-xs uppercase bg-transparent text-Neutral-300 hover:text-Lime-400 hover:bg-Neutral-900/70 rounded-none transition-colors",
-                        active &&
-                          "text-Lime-400 bg-Neutral-900 font-semibold border-b-2 border-Lime-500",
+                        "text-sm font-medium text-muted-foreground hover:text-foreground rounded-md transition-colors",
+                        active && "text-foreground font-semibold bg-muted",
                       )}
                       render={<Link href={item.href}>{item.label}</Link>}
                     />
@@ -71,7 +69,7 @@ export function NavigationMenuDemo() {
         {/* Desktop Action */}
         <div className="hidden md:flex items-center gap-3">
           <Button
-            variant="neon-outline"
+            variant="outline"
             size="sm"
             render={<Link href="/login">Đăng nhập</Link>}
           />
@@ -84,7 +82,7 @@ export function NavigationMenuDemo() {
             onClick={() => setIsOpen((prev) => !prev)}
             aria-label={isOpen ? "Đóng menu" : "Mở menu"}
             aria-expanded={isOpen}
-            className="inline-flex items-center justify-center p-2 text-Neutral-300 hover:text-Lime-400 hover:bg-Neutral-900 border border-Neutral-800 transition-colors focus:outline-none"
+            className="inline-flex items-center justify-center p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted border border-border transition-colors focus:outline-none"
           >
             {isOpen ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
@@ -93,7 +91,7 @@ export function NavigationMenuDemo() {
 
       {/* Mobile Dropdown Menu */}
       {isOpen && (
-        <div className="border-t border-Neutral-800 bg-Navy-950 px-4 py-3 md:hidden">
+        <div className="border-t border-border bg-background px-4 py-3 md:hidden">
           <nav className="flex flex-col space-y-1">
             {NAV_ITEMS.map((item) => {
               const active = isLinkActive(item.href);
@@ -103,26 +101,21 @@ export function NavigationMenuDemo() {
                   href={item.href}
                   onClick={() => setIsOpen(false)}
                   className={cn(
-                    "flex items-center justify-between px-3 py-2.5 text-xs font-mono uppercase tracking-wider transition-colors",
+                    "flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium transition-colors",
                     active
-                      ? "border-l-2 border-Lime-500 bg-Neutral-900 text-Lime-400 font-bold pl-2.5"
-                      : "text-Neutral-300 hover:bg-Neutral-900/60 hover:text-Lime-400",
+                      ? "bg-muted text-foreground font-semibold"
+                      : "text-muted-foreground hover:bg-muted/60 hover:text-foreground",
                   )}
                 >
                   <span>{item.label}</span>
-                  {active && (
-                    <span className="text-[10px] text-Lime-500 font-bold">
-                      &gt;
-                    </span>
-                  )}
                 </Link>
               );
             })}
           </nav>
 
-          <div className="mt-3 pt-3 border-t border-Neutral-800/80">
+          <div className="mt-3 pt-3 border-t border-border">
             <Button
-              variant="neon-outline"
+              variant="outline"
               size="sm"
               className="w-full justify-center"
               render={

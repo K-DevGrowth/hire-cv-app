@@ -11,7 +11,10 @@ const db = drizzle(sql, { schema });
 import { jobs, type NewJob } from "./schema/jobs";
 import { users, type NewUser } from "./schema/users";
 import { interviews, type NewInterview } from "./schema/interviews";
-import { resumeAnalyses, type NewResumeAnalysis } from "./schema/resumeAnalyses";
+import {
+  resumeAnalyses,
+  type NewResumeAnalysis,
+} from "./schema/resumeAnalyses";
 
 const usersData: NewUser[] = [
   {

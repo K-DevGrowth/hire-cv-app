@@ -1,53 +1,21 @@
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "cn";
-
-const cardVariants = cva(
-  "group/card flex flex-col gap-(--card-spacing) py-(--card-spacing) text-sm [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0",
-  {
-    variants: {
-      variant: {
-        default:
-          "overflow-hidden rounded-xl bg-card text-card-foreground ring-1 ring-foreground/10 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl",
-        cyber:
-          "relative rounded-none border border-Neutral-800 bg-[#0d131d]/95 text-Neutral-100 shadow-2xl backdrop-blur-md",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-    },
-  },
-);
 
 function Card({
   className,
-  variant = "default",
   size = "default",
-  cyberCorners,
-  children,
   ...props
-}: React.ComponentProps<"div"> &
-  VariantProps<typeof cardVariants> & {
-    size?: "default" | "sm";
-    cyberCorners?: boolean;
-  }) {
-  const hasCyberCorners = cyberCorners ?? (variant === "cyber");
-
+}: React.ComponentProps<"div"> & { size?: "default" | "sm"; variant?: string }) {
   return (
     <div
       data-slot="card"
       data-size={size}
-      className={cn(cardVariants({ variant }), className)}
-      {...props}
-    >
-      {hasCyberCorners && (
-        <>
-          <div className="pointer-events-none absolute -top-[2px] -left-[2px] h-4 w-4 border-t-2 border-l-2 border-Lime-500" />
-          <div className="pointer-events-none absolute -bottom-[2px] -right-[2px] h-4 w-4 border-b-2 border-r-2 border-Lime-500" />
-        </>
+      className={cn(
+        "group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-xl bg-card py-(--card-spacing) text-sm text-card-foreground ring-1 ring-foreground/10 [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl",
+        className,
       )}
-      {children}
-    </div>
+      {...props}
+    />
   );
 }
 
@@ -56,7 +24,7 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="card-header"
       className={cn(
-        "group/card-header @container/card-header grid auto-rows-min items-start gap-1 px-(--card-spacing) has-data-[slot=card-action]:grid-cols-[1fr_auto] has-data-[slot=card-description]:grid-rows-[auto_auto] [.border-b]:pb-(--card-spacing)",
+        "group/card-header @container/card-header grid auto-rows-min items-start gap-1 rounded-t-xl px-(--card-spacing) has-data-[slot=card-action]:grid-cols-[1fr_auto] has-data-[slot=card-description]:grid-rows-[auto_auto] [.border-b]:pb-(--card-spacing)",
         className,
       )}
       {...props}
@@ -118,7 +86,7 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="card-footer"
       className={cn(
-        "flex items-center border-t bg-muted/50 p-(--card-spacing)",
+        "flex items-center rounded-b-xl border-t bg-muted/50 p-(--card-spacing)",
         className,
       )}
       {...props}
@@ -134,5 +102,4 @@ export {
   CardAction,
   CardDescription,
   CardContent,
-  cardVariants,
 };
