@@ -1,4 +1,4 @@
-export * from "./users";
+export * from "./auth-schema";
 export * from "./jobs";
 export * from "./jobApplications";
 export * from "./interviews";

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import {
   NavigationMenu,
@@ -13,6 +13,7 @@ import {
 } from "./ui/navigation-menu";
 import { Button } from "./ui/button";
 import { cn } from "cn";
+import { authClient } from "@/lib/auth-client";
 
 const NAV_ITEMS = [
   { label: "Việc làm", href: "/jobs" },
@@ -24,6 +25,9 @@ const NAV_ITEMS = [
 export function NavigationMenuDemo() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const { data, isPending } = authClient.useSession();
+  const user = data?.user;
+  const router = useRouter();
 
   const isLinkActive = (href: string) => {
     if (href === "/") return pathname === "/";
@@ -68,11 +72,34 @@ export function NavigationMenuDemo() {
 
         {/* Desktop Action */}
         <div className="hidden md:flex items-center gap-3">
-          <Button
-            variant="outline"
-            size="sm"
-            render={<Link href="/login">Đăng nhập</Link>}
-          />
+          {isPending ? (
+            <div className="h-8 w-24 animate-pulse rounded-md bg-muted" />
+          ) : user ? (
+            <>
+              <Button
+                variant="ghost"
+                size="sm"
+                render={<Link href="/profile">Hồ sơ của tôi</Link>}
+              />
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() =>
+                  authClient.signOut({
+                    fetchOptions: { onSuccess: () => router.push("/") },
+                  })
+                }
+              >
+                Đăng xuất
+              </Button>
+            </>
+          ) : (
+            <Button
+              variant="outline"
+              size="sm"
+              render={<Link href="/login">Đăng nhập</Link>}
+            />
+          )}
         </div>
 
         {/* Mobile Hamburger Toggle Button */}
@@ -114,16 +141,36 @@ export function NavigationMenuDemo() {
           </nav>
 
           <div className="mt-3 pt-3 border-t border-border">
-            <Button
-              variant="outline"
-              size="sm"
-              className="w-full justify-center"
-              render={
-                <Link href="/login" onClick={() => setIsOpen(false)}>
-                  Đăng nhập
-                </Link>
-              }
-            />
+            <div className="hidden md:flex items-center gap-3">
+              {isPending ? (
+                <div className="h-8 w-24 animate-pulse rounded-md bg-muted" />
+              ) : user ? (
+                <>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    render={<Link href="/profile">Hồ sơ của tôi</Link>}
+                  />
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() =>
+                      authClient.signOut({
+                        fetchOptions: { onSuccess: () => router.push("/") },
+                      })
+                    }
+                  >
+                    Đăng xuất
+                  </Button>
+                </>
+              ) : (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  render={<Link href="/login">Đăng nhập</Link>}
+                />
+              )}
+            </div>
           </div>
         </div>
       )}

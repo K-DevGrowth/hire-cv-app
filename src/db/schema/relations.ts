@@ -1,11 +1,11 @@
 import { relations } from "drizzle-orm";
-import { users } from "./users";
+import { account, session, user } from "./auth-schema";
 import { jobs } from "./jobs";
 import { jobApplications } from "./jobApplications";
 import { interviews } from "./interviews";
 import { resumeAnalyses } from "./resumeAnalyses";
 
-export const usersRelations = relations(users, ({ many }) => ({
+export const usersRelations = relations(user, ({ many }) => ({
   interviews: many(interviews),
 }));
 
@@ -30,9 +30,9 @@ export const interviewsRelations = relations(interviews, ({ one }) => ({
     fields: [interviews.applicationId],
     references: [jobApplications.id],
   }),
-  interviewer: one(users, {
+  interviewer: one(user, {
     fields: [interviews.interviewerId],
-    references: [users.id],
+    references: [user.id],
   }),
 }));
 
@@ -40,5 +40,24 @@ export const resumeAnalysesRelations = relations(resumeAnalyses, ({ one }) => ({
   job: one(jobs, {
     fields: [resumeAnalyses.jobId],
     references: [jobs.id],
+  }),
+}));
+
+export const userRelations = relations(user, ({ many }) => ({
+  sessions: many(session),
+  accounts: many(account),
+}));
+
+export const sessionRelations = relations(session, ({ one }) => ({
+  user: one(user, {
+    fields: [session.userId],
+    references: [user.id],
+  }),
+}));
+
+export const accountRelations = relations(account, ({ one }) => ({
+  user: one(user, {
+    fields: [account.userId],
+    references: [user.id],
   }),
 }));

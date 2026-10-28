@@ -9,7 +9,7 @@ const sql = neon(process.env.DATABASE_URL!);
 const db = drizzle(sql, { schema });
 
 import { jobs, type NewJob } from "./schema/jobs";
-import { users, type NewUser } from "./schema/users";
+import { user, type NewUser } from "./schema/auth-schema";
 import { interviews, type NewInterview } from "./schema/interviews";
 import {
   resumeAnalyses,
@@ -22,7 +22,7 @@ const usersData: NewUser[] = [
     name: "Nguyễn Thu Hà",
     email: "ha.nguyen@example.com",
     role: "hr",
-    avatar: "https://i.pravatar.cc/150?img=47",
+    image: "https://i.pravatar.cc/150?img=47",
     phone: "0912345678",
   },
   {
@@ -30,7 +30,7 @@ const usersData: NewUser[] = [
     name: "Trần Minh Khoa",
     email: "khoa.tran@example.com",
     role: "interviewer",
-    avatar: "https://i.pravatar.cc/150?img=12",
+    image: "https://i.pravatar.cc/150?img=12",
     phone: "0923456789",
   },
   {
@@ -38,7 +38,7 @@ const usersData: NewUser[] = [
     name: "Nguyễn Văn An",
     email: "an.nguyen@example.com",
     role: "candidate",
-    avatar: "https://i.pravatar.cc/150?img=68",
+    image: "https://i.pravatar.cc/150?img=68",
     phone: "0901234567",
   },
 ];
@@ -487,9 +487,9 @@ async function seed() {
 
   await db.delete(jobApplications);
   await db.delete(jobs);
-  await db.delete(users);
+  await db.delete(user);
 
-  await db.insert(users).values(usersData);
+  await db.insert(user).values(usersData);
   console.log(`Inserted ${usersData.length} users`);
 
   await db.insert(jobs).values(jobsData);

@@ -1,13 +1,13 @@
 import { integer, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 import { jobApplications } from "./jobApplications";
-import { users } from "./users";
+import { user } from "./auth-schema";
 
 export const interviews = pgTable("interviews", {
   id: uuid("id").defaultRandom().primaryKey(),
   applicationId: uuid("application_id")
     .notNull()
     .references(() => jobApplications.id, { onDelete: "cascade" }),
-  interviewerId: uuid("interviewer_id").references(() => users.id, {
+  interviewerId: text("interviewer_id").references(() => user.id, {
     onDelete: "set null",
   }),
 
