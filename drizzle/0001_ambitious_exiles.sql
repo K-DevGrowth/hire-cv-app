@@ -1,1 +1,0 @@
-ALTER TABLE "interviews" ALTER COLUMN "interviewer_id" SET DATA TYPE text;

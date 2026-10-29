@@ -27,7 +27,7 @@ export function LoginForm({
   const handleGoogleSignIn = async () => {
     await authClient.signIn.social({
       provider: "google",
-      callbackURL: "/candidates/jobs",
+      callbackURL: "/",
     });
   };
 

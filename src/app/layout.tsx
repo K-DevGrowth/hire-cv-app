@@ -1,5 +1,7 @@
+import Navbar from "@/components/navbar/navbar";
 import "./globals.css";
 import { Geist, Geist_Mono } from "next/font/google";
+import { PublicNav } from "@/components/navbar/nav-config";
 
 const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
 const geistMono = Geist_Mono({
@@ -7,7 +9,7 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -15,9 +17,8 @@ export default function RootLayout({
   return (
     <html lang="vi" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="min-h-screen bg-background font-sans text-foreground antialiased flex flex-col">
-        {/* Header chung xuất hiện ở mọi trang */}
+        <Navbar links={PublicNav} userName="" />
 
-        {/* Nội dung trang */}
         <div className="flex-1 flex flex-col">{children}</div>
       </body>
     </html>

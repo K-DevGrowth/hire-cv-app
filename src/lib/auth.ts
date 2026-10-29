@@ -3,6 +3,15 @@ import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
 import { user, session, account, verification } from "../db/schema/auth-schema";
+import { admin } from "better-auth/plugins";
+import {
+  ac,
+  adminRole,
+  candidateRole,
+  hrRole,
+  interviewerRole,
+  recruiterRole,
+} from "./rbac/permissions";
 
 const schema = { user, session, account, verification };
 
@@ -15,7 +24,6 @@ export const auth = betterAuth({
     provider: "pg",
     schema,
   }),
-  // baseURL: "http://localhost:3000/",
   emailAndPassword: { enabled: true },
   socialProviders: {
     google: {
@@ -23,18 +31,18 @@ export const auth = betterAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     },
   },
-  user: {
-    additionalFields: {
-      role: {
-        type: "string",
-        required: true,
-        defaultValue: "candidate",
-        input: false, // không cho client tự set role lúc đăng ký — set ở server
+  plugins: [
+    admin({
+      ac,
+      roles: {
+        admin: adminRole,
+        recruiter: recruiterRole,
+        hr: hrRole,
+        interviewer: interviewerRole,
+        candidate: candidateRole,
       },
-      phone: {
-        type: "string",
-        required: false,
-      },
-    },
-  },
+      defaultRole: "candidate",
+      adminRoles: ["admin"],
+    }),
+  ],
 });
