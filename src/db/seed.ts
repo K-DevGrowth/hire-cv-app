@@ -23,7 +23,6 @@ const usersData: NewUser[] = [
     email: "ha.nguyen@example.com",
     role: "hr",
     image: "https://i.pravatar.cc/150?img=47",
-    phone: "0912345678",
   },
   {
     id: "22222222-2222-4222-8222-222222222222",
@@ -31,7 +30,6 @@ const usersData: NewUser[] = [
     email: "khoa.tran@example.com",
     role: "interviewer",
     image: "https://i.pravatar.cc/150?img=12",
-    phone: "0923456789",
   },
   {
     id: "33333333-3333-4333-8333-333333333333",
@@ -39,7 +37,6 @@ const usersData: NewUser[] = [
     email: "an.nguyen@example.com",
     role: "candidate",
     image: "https://i.pravatar.cc/150?img=68",
-    phone: "0901234567",
   },
 ];
 import { jobApplications, type NewApplication } from "./schema/jobApplications";
