@@ -2,16 +2,15 @@ import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
-import { user, session, account, verification } from "../db/schema/auth-schema";
-import { admin } from "better-auth/plugins";
 import {
-  ac,
-  adminRole,
-  candidateRole,
-  hrRole,
-  interviewerRole,
-  recruiterRole,
-} from "./rbac/permissions";
+  user,
+  session,
+  account,
+  verification,
+} from "../../db/schema/auth-schema";
+import { admin } from "better-auth/plugins";
+import { ac, roles } from "../rbac/permissions";
+import { nextCookies } from "better-auth/next-js";
 
 const schema = { user, session, account, verification };
 
@@ -34,15 +33,10 @@ export const auth = betterAuth({
   plugins: [
     admin({
       ac,
-      roles: {
-        admin: adminRole,
-        recruiter: recruiterRole,
-        hr: hrRole,
-        interviewer: interviewerRole,
-        candidate: candidateRole,
-      },
+      roles,
       defaultRole: "candidate",
       adminRoles: ["admin"],
     }),
+    nextCookies(),
   ],
 });

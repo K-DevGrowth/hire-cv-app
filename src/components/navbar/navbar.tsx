@@ -14,12 +14,15 @@ export default function Navbar({ links, userName }: Props) {
 
   return (
     <nav>
-      <ul>
+      <ul className="flex gap-4 p-4 bg-indigo-600 text-white font-semibold">
         {links.map((item) => (
           <li key={item.href}>
             <Link
               href={item.href}
               aria-current={item.href === pathname ? "page" : undefined}
+              className={
+                item.href === pathname ? "bg-indigo-700 p-1" : undefined
+              }
             >
               {item.label}
             </Link>

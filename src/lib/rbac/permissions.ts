@@ -3,45 +3,65 @@ import { defaultStatements, adminAc } from "better-auth/plugins/admin/access";
 
 const statement = {
   ...defaultStatements,
-  job: ["create", "read", "update", "close"],
+  job: ["create", "read", "update", "delete", "publish"],
   candidate: ["create", "read", "update", "delete"],
-  application: ["read", "move"], // move = chuyển stage trong pipeline
-  scorecard: ["create", "read"], // phiếu đánh giá sau phỏng vấn
-  offer: ["create", "read", "approve"],
+  application: ["create", "read", "move-stage", "reject", "withdraw"],
+  interview: ["schedule", "read", "cancel"],
+  scorecard: ["read", "submit"],
+  offer: ["create", "read", "approve", "send"],
 } as const;
 
 export const ac = createAccessControl(statement);
 
-export const candidateRole = ac.newRole({});
-
-export const adminRole = ac.newRole({
+export const admin = ac.newRole({
   ...adminAc.statements,
-  job: ["create", "read", "update", "close"],
+  job: ["create", "read", "update", "delete", "publish"],
   candidate: ["create", "read", "update", "delete"],
-  application: ["read", "move"],
-  scorecard: ["create", "read"],
-  offer: ["create", "read", "approve"],
+  application: ["create", "read", "move-stage", "reject", "withdraw"],
+  interview: ["schedule", "read", "cancel"],
+  scorecard: ["read", "submit"],
+  offer: ["create", "read", "approve", "send"],
 });
 
-export const interviewerRole = ac.newRole({
+export const recruiter = ac.newRole({
+  job: ["create", "read", "update", "publish"],
+  candidate: ["create", "read", "update"],
+  application: ["create", "read", "move-stage", "reject"],
+  interview: ["schedule", "read", "cancel"],
+  scorecard: ["read"],
+  offer: ["create", "read", "send"],
+});
+
+export const hiringManager = ac.newRole({
   job: ["read"],
   candidate: ["read"],
-  application: ["read"],
-  scorecard: ["create", "read"],
-});
-
-export const hrRole = ac.newRole({
-  job: ["read"],
-  candidate: ["read", "update"],
-  application: ["read"],
-  scorecard: ["read"],
+  application: ["read", "move-stage"],
+  scorecard: ["read", "submit"],
   offer: ["read", "approve"],
 });
 
-export const recruiterRole = ac.newRole({
-  job: ["create", "read", "update", "close"],
-  candidate: ["create", "read", "update"],
-  application: ["read", "move"],
-  scorecard: ["read"],
-  offer: ["read", "read"],
+export const interviewer = ac.newRole({
+  candidate: ["read"],
+  interview: ["read"],
+  scorecard: ["submit"],
 });
+
+export const candidate = ac.newRole({
+  job: ["read"],
+  candidate: ["read", "update"],
+  application: ["create", "read", "withdraw"],
+});
+
+export const roles = {
+  admin,
+  recruiter,
+  hiring_manager: hiringManager,
+  interviewer,
+  candidate,
+} as const;
+
+export type RoleName = keyof typeof roles;
+
+export const ROLE_NAMES = Object.keys(roles) as RoleName[];
+
+export const STAFF_ROLES = ROLE_NAMES.filter((r) => r !== "candidate");
