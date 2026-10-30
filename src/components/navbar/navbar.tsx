@@ -20,9 +20,7 @@ export default function Navbar({ links, userName }: Props) {
             <Link
               href={item.href}
               aria-current={item.href === pathname ? "page" : undefined}
-              className={
-                item.href === pathname ? "bg-indigo-700 p-1" : undefined
-              }
+              className={`${item.href === pathname ? "bg-indigo-700" : ""} px-2 py-1 rounded`}
             >
               {item.label}
             </Link>

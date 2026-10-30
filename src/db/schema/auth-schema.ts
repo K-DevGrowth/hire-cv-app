@@ -77,3 +77,6 @@ export const verification = pgTable(
   },
   (table) => [index("verification_identifier_idx").on(table.identifier)],
 );
+
+export type User = typeof user.$inferSelect;
+export type NewUser = typeof user.$inferInsert;
