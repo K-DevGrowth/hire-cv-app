@@ -10,14 +10,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Field,
-  FieldDescription,
-  FieldGroup,
-  FieldLabel,
-} from "@/components/ui/field";
+import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import Link from "next/link";
 import { authClient } from "@/lib/auth/auth-client";
 
 export function LoginForm({
@@ -27,7 +21,6 @@ export function LoginForm({
   const handleGoogleSignIn = async () => {
     await authClient.signIn.social({
       provider: "google",
-      callbackURL: "/",
     });
   };
 
@@ -52,22 +45,9 @@ export function LoginForm({
                   required
                 />
               </Field>
+
               <Field>
-                <div className="flex items-center">
-                  <FieldLabel htmlFor="password">Mật khẩu</FieldLabel>
-                  <a
-                    href="#"
-                    className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                  >
-                    Quên mật khẩu?
-                  </a>
-                </div>
-                <Input id="password" type="password" required />
-              </Field>
-              <Field>
-                <Button type="submit" disabled={true}>
-                  Đăng nhập
-                </Button>
+                <Button type="submit">Gửi mã OTP</Button>
                 <Button
                   variant="outline"
                   type="button"
@@ -81,9 +61,6 @@ export function LoginForm({
                   </svg>
                   Đăng nhập với Google
                 </Button>
-                <FieldDescription className="text-center">
-                  {/* Chưa có tài khoản? <Link href="/signup">Đăng ký</Link> */}
-                </FieldDescription>
               </Field>
             </FieldGroup>
           </form>

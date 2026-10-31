@@ -65,3 +65,7 @@ export type RoleName = keyof typeof roles;
 export const ROLE_NAMES = Object.keys(roles) as RoleName[];
 
 export const STAFF_ROLES = ROLE_NAMES.filter((r) => r !== "candidate");
+
+export type Permissions = {
+  [R in keyof typeof statement]?: (typeof statement)[R][number][];
+};

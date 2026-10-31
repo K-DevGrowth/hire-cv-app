@@ -9,7 +9,7 @@ import {
   verification,
 } from "../../db/schema/auth-schema";
 import { admin } from "better-auth/plugins";
-import { ac, roles } from "../rbac/permissions";
+import { ac, roles } from "./permissions";
 import { nextCookies } from "better-auth/next-js";
 
 const schema = { user, session, account, verification };
